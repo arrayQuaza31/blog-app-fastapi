@@ -1,11 +1,21 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Settings(BaseSettings):
+class GeneralSettings(BaseSettings):
     PGDB_URL: str
-    JWT_SECRET: str
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
-Config = Settings()
+class SecuritySettings(BaseSettings):
+    SALT_ROUNDS: int
+    JWT_SECRET: str
+    JWT_ALGORITHM: str
+    ACCESS_TOKEN_EXPIRY: int
+    REFRESH_TOKEN_EXPIRY: int
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
+
+GeneralConfig = GeneralSettings()
+SecurityConfig = SecuritySettings()

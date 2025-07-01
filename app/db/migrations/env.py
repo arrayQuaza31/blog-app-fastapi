@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from app.core.config import Config
+from app.core.config import GeneralConfig
 from app.db.base import Base
 
 
@@ -24,7 +24,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option("sqlalchemy.url", Config.PGDB_URL)
+config.set_main_option("sqlalchemy.url", GeneralConfig.PGDB_URL)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
